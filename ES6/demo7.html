@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <link href="assets/index.css" rel="stylesheet">
+    <title>类</title>
+</head>
+
+<body>
+    <section class="es6-wrapper">
+        <h1>类</h1>
+        <div class="content">
+            <ul class="con-ul">
+                <li class="con-li">
+                    1、简介
+                    <ul class="infos-ul">
+                        <li>类的由来</li>
+                        <li>constructor 方法</li>
+                        <li>类的实例</li>
+                    </ul>
+                </li>
+                <li class="con-li">
+                    2、静态方法
+                    <ul class="infos-ul">
+                        <li>类相当于实例的原型，所有在类中定义的方法，都会被实例继承。如果在一个方法前，加上static关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”。</li>
+                    </ul>
+                </li>
+                <li class="con-li">
+                    3、实例属性的新写法
+                    <ul class="infos-ul">
+                        <li>实例属性除了定义在constructor()方法里面的this上面，也可以定义在类的最顶层</li>
+                    </ul>
+                </li>
+                <li class="con-li">
+                    4、静态属性
+                    <ul class="infos-ul">
+                        <li>静态属性指的是 Class 本身的属性，即Class.propName，而不是定义在实例对象（this）上的属性</li>
+                    </ul>
+                </li>
+                <li class="con-li">
+                    5、extends 继承
+                    <ul class="infos-ul">
+                        <li>Object.getPrototypeOf() 一个类是否继承了另一个类</li>
+                    </ul>
+                </li>
+                <li class="con-li">
+                    6、super
+                    <ul class="infos-ul">
+                        <li>作为函数时，super()只能用在子类的构造函数之中，用在其他地方就会报错</li>
+                        <li>super作为对象时，在普通方法中，指向父类的原型对象；在静态方法中，指向父类</li>
+                        <li>由于super指向父类的原型对象，所以定义在父类实例上的方法或属性，是无法通过super调用的</li>
+                        <li>在子类普通方法中通过super调用父类的方法时，方法内部的this指向当前的子类实例</li>
+                    </ul>
+                </li>
+                <li class="con-li">
+                    7、类的 prototype 属性和__proto__属性
+                    <ul class="infos-ul">
+                        <li>每一个对象都有__proto__属性，指向对应的构造函数的prototype属性。Class
+                            作为构造函数的语法糖，同时有prototype属性和__proto__属性，因此同时存在两条继承链</li>
+                        <li>子类的__proto__属性，表示构造函数的继承，总是指向父类</li>
+                        <li>子类prototype属性的__proto__属性，表示方法的继承，总是指向父类的prototype属性</li>
+                    </ul>
+                </li>
+                <li class="con-li">
+                    8、实例的 __proto__ 属性
+                    <ul class="infos-ul">
+                        <li>子类实例的__proto__属性的__proto__属性，指向父类实例的__proto__属性</li>
+                    </ul>
+                </li>
+        </div>
+    </section>
+
+    <script>
+        //　类的由来：js语言中，生成实例对象的传统方法是通过构造函数，跟传统的面向对象语言（比如 C++ 和 Java）差异很大
+        //  ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对象的模板。通过class关键字，可以定义类。
+        // function Point(x, y) {
+        //     this.x = x;
+        //     this.y = y;
+        // }
+        // Point.prototype.toString = function () {
+        //     return `${this.x}, ${this.y}`
+        // };
+        // var p = new Point(1, 2);
+        // console.log(p.toString())
+
+        // class Point {
+        //     constructor(x, y) {
+        //         this.x = x;
+        //         this.y = y;
+        //     }
+        //     toString() {
+        //         return `${this.x}, ${this.y}`
+        //     }
+        // }
+        // var p = new Point(1, 2);
+        // console.log(p.toString())
+        //  类的所有方法都定义在类的prototype属性上面
+        // Point.prototype = {
+        //     constructor() {},
+        //     toString() {}
+        // }
+
+        // 静态方法:如果在一个方法前，加上static关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”。
+        // class Foo {
+        //     static classMethod() {
+        //         console.log('hello world!');
+        //     }
+        // }
+        // Foo.classMethod();
+        // let foo = new Foo();
+        // foo.classMethod();
+
+        // class Foo {
+        //     static classMethod() {
+        //         console.log('hello world!');
+        //     }
+        // }
+        // class Bar extends Foo {
+        // }
+        // Bar.classMethod();
+
+
+        // 3、实例属性的新写法:实例属性除了定义在constructor()方法里面的this上面，也可以定义在类的最顶层。
+        // class IncreasingCounter {
+        //     constructor() {
+        //         this._count = 0;
+        //     }
+        //     get value() {
+        //         console.log('Getting the current value!');
+        //         return this._count;
+        //     }
+        //     increment() {
+        //         this._count++;
+        //     }
+        // }
+        // 等同于
+        // class IncreasingCounter {
+        //     _count = 0;
+        //     get value() {
+        //         console.log('Getting the current value!');
+        //         return this._count;
+        //     }
+        //     increment() {
+        //         this._count++;
+        //     }
+        // }
+
+
+        // 4、静态属性指的是 Class 本身的属性，即Class.propName，而不是定义在实例对象（this）上的属性。
+        // Class内部只有静态方法，没有静态属性
+        // class Foo {
+        // }
+        // Foo.prop = 1;
+
+
+        // 5、extends 继承
+        // class Point {
+        //     constructor(x, y) {
+        //         this.x = x;
+        //         this.y = y;
+        //     }
+        // }
+
+        // class ColorPoint extends Point {
+        //     constructor(x, y, color) {
+        //         super(x, y);
+        //         this.color = color;
+        //     }
+        // }
+
+        // class Point {
+        //     toString() {
+        //         console.log(236);
+        //     }
+        // }
+        // class ColorPoint extends Point {
+        //     toString() {
+        //         console.log(123);
+        //     }
+        // }
+        // new ColorPoint().toString();
+        // console.log(Object.getPrototypeOf(ColorPoint) === Point);
+
+
+        // 7、类的 prototype 属性和__proto__属性
+        // class A {
+        // }
+        // class B extends A {
+        // }
+        // B.__proto__ === A // true
+        // B.prototype.__proto__ === A.prototype // true
+
+
+        // 8、实例的 __proto__ 属性
+        // var p1 = new Point(2, 3);
+        // var p2 = new ColorPoint(2, 3, 'red');
+        // p2.__proto__.__proto__ === p1.__proto__ // true
+    </script>
+
+</body>
+
+</html>

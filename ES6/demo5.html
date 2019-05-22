@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <link href="assets/index.css" rel="stylesheet">
+    <title>新增数据类型</title>
+</head>
+
+<body>
+    <section class="es6-wrapper">
+        <h1>新增数据类型</h1>
+        <div class="content">
+            <ul class="con-ul">
+                <li class="con-li">
+                    1、Symbol
+                    <ul class="infos-ul">
+                        <li>Symbol保证每个属性的名字都是独一无二的就好了，这样就从根本上防止属性名的冲突。这就是 ES6 引入Symbol的原因</li>
+                        <li>它是 JavaScript 语言的第七种数据类型，前六种是：undefined、null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）</li>
+                    </ul>
+                </li>
+                <li class="con-li">
+                    2、Set和Map数据结构
+                    <ul class="infos-ul">
+                        <li>ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。</li>
+                        <li>ES6 提供了 Map 数据结构，各种类型的值（包括对象）都可以当作键</li>
+                        <li>Set和Map实例都有相应的操作方法（用于操作数据）和遍历方法（用于遍历成员）</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <script>
+        // Symbol
+        let s = Symbol();
+        console.log(typeof s);
+        let s1 = Symbol();
+        let s2 = Symbol();
+        console.log(s1 === s2);
+
+
+        // set数据结构: ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值
+        // 去重
+        console.log([...new Set([1, 2, 3, 4, 4])])
+        // 求并集
+        function distinct(arr1, arr2) {
+            return [...new Set([...arr1, ...arr2])]
+        }
+        let arr = distinct([1, 2, 3], [2, 3, 4, 5])
+        console.log(arr) // [1,2,3,4,5]
+        // 求交集
+        function intersect(arr1, arr2) {
+            // 利用Set里的方法has，来判断new Set(arr2)中是否含有item，
+            // 如果含有，那么则是true，当为true时，filter函数则会保留该项
+            // 如果没有，则是false,当为false时，filter函数则不会保留该项
+            return arr1.filter(item => new Set(arr2).has(item))
+        }
+        console.log(intersect([1, 2, 3], [2, 3, 4, 5])) // [2,3]
+
+
+        // JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。
+        // 为了解决这个问题，ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键
+        // Map数据结构，也是集合，主要格式是 key => value，同样是不能放重复的key
+        const m = new Map();
+        const o = { p: 'Hello World' };
+        m.set(o, 'content');
+        console.log(m)
+    </script>
+
+</body>
+
+</html>
