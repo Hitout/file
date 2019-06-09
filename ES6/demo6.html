@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <link href="assets/index.css" rel="stylesheet">
+    <title>Promise</title>
+</head>
+
+<body>
+    <section class="es6-wrapper">
+        <h1>Promise</h1>
+        <div class="content">
+            <ul class="con-ul">
+                <li class="con-li">
+                    1、Promise 含义
+                    <ul class="infos-ul">
+                        <li>Promise 是异步编程的一种解决方案</li>
+                        <li>Promise对象代表一个异步操作，有三种状态：pending（进行中）、resolved（已成功）和rejected（已失败）</li>
+                        <li>有了Promise对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。此外，Promise对象提供统一的接口，使得控制异步操作更加容易</li>
+                    </ul>
+                </li>
+                <li class="con-li">
+                    2、基本用法
+                    <ul class="infos-ul">
+                        <li>ES6 规定，Promise对象是一个构造函数，用来生成Promise实例。</li>
+                    </ul>
+                </li>
+                <li class="con-li">
+                    3、Promise.prototype.then()
+                </li>
+                <li class="con-li">
+                    4、Promise.prototype.catch()
+                </li>
+                <li class="con-li">
+                    5、Promise.prototype.finally()
+                </li>
+                <li class="con-li">
+                    6、Promise.all()
+                </li>
+                <li class="con-li">
+                    7、Promise.race()
+                </li>
+                <li class="con-li">
+                    8、Promise.resolve()
+                </li>
+                <li class="con-li">
+                    9、Promise.reject()
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <script>
+        // 基本用法
+        let promise = new Promise((resolve, reject) => {
+            // do something
+            let value = 123
+            if (!true) {
+                // do something
+                resolve(value);
+            } else {
+                reject(new Error('this has error'));
+            }
+        });
+        promise.then((value) => { // resolve
+            console.log(value);
+        }).catch(error => { // reject
+            console.log(error, 123);
+        }).finally(() => {
+            console.log('finally');
+        });
+        // Promise.prototype.then()
+        // Promise.prototype.catch()
+        // Promise.prototype.finally()
+        // Promise.all()
+        // const p = Promise.all([p1, p2, p3]);
+        // Promise.race() 只要p1、p2、p3之中有一个实例率先改变状态，p的状态就跟着改变
+        // const r = Promise.race([p1, p2, p3]);
+        // Promise.resolve() 将现有对象转为 Promise 对象，Promise.resolve方法就起到这个作用
+        // const jsPromise = Promise.resolve($.ajax('/whatever.json'));
+        // Promise.resolve('foo')
+        // 等价于
+        // new Promise(resolve => resolve('foo'))
+        // Promise.reject() Promise.reject(reason)方法也会返回一个新的 Promise 实例，该实例的状态为rejected。
+        // const p = Promise.reject('出错了');
+        // 等同于
+        // const p = new Promise((resolve, reject) => reject('出错了'))
+
+    </script>
+
+</body>
+
+</html>

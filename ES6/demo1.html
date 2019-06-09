@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <link href="assets/index.css" rel="stylesheet">
+    <title>作用域</title>
+</head>
+
+<body>
+    <section class="es6-wrapper">
+        <h1>作用域</h1>
+        <div class="content">
+            <ul class="con-ul">
+                <li class="con-li">
+                    1、let和const
+                    <ul class="infos-ul">
+                        <li>let和const只在声明所在的块级作用域内有效</li>
+                        <li>let和const声明的变量不能提升，存在暂时性死区，只能在声明的位置后面使用</li>
+                        <li>let和const声明的常量，不能重复声明</li>
+                        <li>const声明一个只读常量，一旦声明，就不能改变，并且声明之后必须要初始化</li>
+                    </ul>
+                </li>
+                <li class="con-li">
+                    2、块级作用域
+                </li>
+                <li class="con-li">
+                    3、顶层对象
+                    <ul class="infos-ul">
+                        <li>let命令、const命令、class命令声明的全局变量，不属于顶层对象的属性</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <script>
+        // ** ES6新增let用来声明变量，用法跟var类似，let声明的变量只在代码块内有效
+        // {
+        //     let a = 'vscode'
+        //     var b = 'IDE'
+        // }
+        // console.log(b)
+        // console.log(a)
+
+
+        // ** 不存在变量提升
+        // console.log(b)
+        // var b = 123
+        // console.log(a)
+        // let a = 234
+
+
+        // ** 暂时性死区，在let命令声明变量tmp之前，都属于tmp的死区
+        // var tmp = 123;
+        // if (true) {
+        //     tmp = 234;
+        //     let tmp;
+        // }
+
+
+        // ** 不允许重复声明
+        // let a = 123;
+        // let a = 234;
+        // const b = 123;
+        // const b = 123;
+
+
+        // ** 块级作用域
+        // function f1() {
+        //     let n = 5;
+        //     if (true) {
+        //         let n = 10;
+        //     }
+        //     console.log(n);
+        // }
+        // f1();
+
+
+        // ** const命令, 一旦声明，常量的值就不能改变；只声明不赋值，也会报错
+        // const PI = 3.1415;
+        // PI = 3;
+        // console.log(PI)
+
+
+        // ** 顶层对象，es6规定：let命令、const命令、class命令声明的全局变量，不属于顶层对象的属性
+        // var a = 1;
+        // console.log(window.a);
+
+        // let b = 1;
+        // console.log(window.b);
+    </script>
+
+</body>
+
+</html>

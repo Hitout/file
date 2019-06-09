@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <link href="assets/index.css" rel="stylesheet">
+    <title>函数的扩展</title>
+</head>
+
+<body>
+    <section class="es6-wrapper">
+        <h1>函数的扩展</h1>
+        <div class="content">
+            <ul class="con-ul">
+                <li class="con-li">
+                    1、函数参数的默认值
+                    <ul class="infos-ul">
+                        <li></li>
+                    </ul>
+                </li>
+                <li class="con-li">
+                    2、rest参数
+                    <ul class="infos-ul">
+                        <li>es6引入rest参数（形式为...变量名）,rest参数搭配的变量是一个数组</li>
+                    </ul>
+                </li>
+                <li class="con-li">
+                    3、严格模式
+                    <ul class="infos-ul">
+                        <li>只要函数参数使用了默认值、解构赋值、或者扩展运算符，那么函数内部就不能显式设定为严格模式，否则会报错</li>
+                    </ul>
+                </li>
+                <li class="con-li">
+                    4、箭头函数
+                    <ul class="infos-ul">
+                        <li>函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象，this指向是固定的</li>
+                        <li>不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误</li>
+                        <li>不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。</li>
+                        <li>不可以使用yield命令，因此箭头函数不能用作 Generator 函数。</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <script>
+        // ** 函数参数的默认值,如果传入undefined，将触发该参数等于默认值，null则没有这个效果
+        // function log(x, y) {
+        //     y = y || 'world';
+        //     console.log(x, y);
+        // }
+        // log('hello')
+        // function foo(x, y = 'world') {
+        //     console.log(x, y);
+        // }
+        // foo('hello')
+        // function bar({ x, y = 2 } = {}) {
+        //     console.log(x, y);
+        // }
+        // bar({ x: 1 })
+
+
+        // ** es6引入rest参数（形式为...变量名）,rest参数搭配的变量是一个数组
+        // function add(...values) {
+        //     let sum = 0;
+        //     for (var val of values) {
+        //         sum += val;
+        //     }
+        //     return sum;
+        // }
+        // console.log(add(1, 2, 3, 4));
+
+
+        // ** 箭头函数：使用“箭头”（=>）定义函数
+        // var f = () => 5;
+        // var f = function () { return 5 };
+        // var sum = (num1, num2) => num1 + num2;
+        // var sum = function (num1, num2) {
+        //     return num1 + num2;
+        // }
+    </script>
+
+</body>
+
+</html>
